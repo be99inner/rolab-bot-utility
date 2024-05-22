@@ -6,7 +6,7 @@ import (
 	"github.com/gorilla/websocket"
 )
 
-// connects to a WebSocket server at the given URL
+// COnnectWebSocket connects to a WebSocket server at the given URL
 func ConnectWebSocket(url string) (*websocket.Conn, error) {
 	conn, _, err := websocket.DefaultDialer.Dial(url, nil)
 	if err != nil {
@@ -16,7 +16,7 @@ func ConnectWebSocket(url string) (*websocket.Conn, error) {
 	return conn, nil
 }
 
-// sends serialized GameData to the WebSocket server
+// SenData sends serialized GameData to the WebSocket server
 func SendData(conn *websocket.Conn, data GameData) error {
 	jsonData, err := Serialize(data)
 	if err != nil {
@@ -32,7 +32,7 @@ func SendData(conn *websocket.Conn, data GameData) error {
 	return nil
 }
 
-// receives data from the WebSocket server and deserializes it into GameData
+// ReceiveData receives data from the WebSocket server and deserializes it into GameData
 func ReceiveData(conn *websocket.Conn) (GameData, error) {
 	_, message, err := conn.ReadMessage()
 	if err != nil {
